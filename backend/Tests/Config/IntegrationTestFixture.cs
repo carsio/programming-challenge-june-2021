@@ -44,6 +44,7 @@ namespace Tests.Config
 
         public void InitialDb()
         {
+            SetFakeData<Movie>();
             SetFakeData<Gender>();
             _applicationDbContext.SaveChanges();
         }

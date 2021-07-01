@@ -1,0 +1,52 @@
+﻿[
+  {
+    "Id": 1,
+    "Title": "Toy Story",
+    "Year": 1995
+  },
+  {
+    "Id": 2,
+    "Title": "Jumanji",
+    "Year": 1995
+  },
+  {
+    "Id": 3,
+    "Title": "Grumpier Old Men",
+    "Year": 1996
+  },
+  {
+    "Id": 4,
+    "Title": "Waiting to Exhale",
+    "Year": 1996
+  },
+  {
+    "Id": 5,
+    "Title": "Father of the Bride Part II",
+    "Year": 1997
+  },
+  {
+    "Id": 6,
+    "Title": "Heat",
+    "Year": 1997
+  },
+  {
+    "Id": 7,
+    "Title": "Sabrina",
+    "Year": 1998
+  },
+  {
+    "Id": 8,
+    "Title": "Tom and Huck",
+    "Year": 1998
+  },
+  {
+    "Id": 9,
+    "Title": "Sudden Death",
+    "Year": 1999
+  },
+  {
+    "Id": 10,
+    "Title": "GoldenEye",
+    "Year": 1999
+  }
+]
