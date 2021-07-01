@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Business.Interfaces;
+using Business.Services;
 using Domain.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -16,21 +18,28 @@ namespace Api.Capiflix
     public class Startup
     {
         private readonly IConfiguration _configuration;
+        private readonly IHostEnvironment _environment;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostEnvironment environment)
         {
             _configuration = configuration;
+            _environment = environment;
         }
         
         // This method gets called by the runtime. Use this method to add services to the container.
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var conn = _configuration["Sqlite:SqliteConnectionString"];
-            services.AddDbContext<ApplicationDbContext>(options =>
+            if (!_environment.IsEnvironment("Testing"))
             {
-                options.UseSqlite(conn);
-            });
+                var conn = _configuration["Sqlite:SqliteConnectionString"];
+                services.AddDbContext<ApplicationDbContext>(options =>
+                {
+                    options.UseSqlite(conn);
+                });
+            }
+            
+            services.AddTransient<IMovieService, MovieService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
