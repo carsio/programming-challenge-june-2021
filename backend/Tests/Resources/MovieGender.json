@@ -1,0 +1,102 @@
+﻿[
+  {
+    "MovieId": 1,
+    "GenderId": 2
+  },
+  {
+    "MovieId": 1,
+    "GenderId": 3
+  },
+  {
+    "MovieId": 1,
+    "GenderId": 4
+  },
+  {
+    "MovieId": 1,
+    "GenderId": 5
+  },
+  {
+    "MovieId": 1,
+    "GenderId": 9
+  },
+  {
+    "MovieId": 2,
+    "GenderId": 2
+  },
+  {
+    "MovieId": 2,
+    "GenderId": 4
+  },
+  {
+    "MovieId": 2,
+    "GenderId": 9
+  },
+  {
+    "MovieId": 3,
+    "GenderId": 5
+  },
+  {
+    "MovieId": 3,
+    "GenderId": 14
+  },
+  {
+    "MovieId": 4,
+    "GenderId": 5
+  },
+  {
+    "MovieId": 4,
+    "GenderId": 8
+  },
+  {
+    "MovieId": 4,
+    "GenderId": 14
+  },
+  {
+    "MovieId": 5,
+    "GenderId": 5
+  },
+  {
+    "MovieId": 6,
+    "GenderId": 1
+  },
+  {
+    "MovieId": 6,
+    "GenderId": 6
+  },
+  {
+    "MovieId": 6,
+    "GenderId": 16
+  },
+  {
+    "MovieId": 7,
+    "GenderId": 5
+  },
+  {
+    "MovieId": 7,
+    "GenderId": 14
+  },
+  {
+    "MovieId": 8,
+    "GenderId": 2
+  },
+  {
+    "MovieId": 8,
+    "GenderId": 4
+  },
+  {
+    "MovieId": 9,
+    "GenderId": 1
+  },
+  {
+    "MovieId": 10,
+    "GenderId": 1
+  },
+  {
+    "MovieId": 10,
+    "GenderId": 2
+  },
+  {
+    "MovieId": 10,
+    "GenderId": 16
+  }
+]

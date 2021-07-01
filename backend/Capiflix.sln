@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business", "Business\Busine
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessApi", "BusinessApi\BusinessApi.csproj", "{EC5776D3-6A36-46FA-8365-1495D3736424}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{C63EC2AC-ACEC-40CF-8E75-CF50FC67613F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{EC5776D3-6A36-46FA-8365-1495D3736424}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5776D3-6A36-46FA-8365-1495D3736424}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EC5776D3-6A36-46FA-8365-1495D3736424}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C63EC2AC-ACEC-40CF-8E75-CF50FC67613F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C63EC2AC-ACEC-40CF-8E75-CF50FC67613F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C63EC2AC-ACEC-40CF-8E75-CF50FC67613F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C63EC2AC-ACEC-40CF-8E75-CF50FC67613F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
