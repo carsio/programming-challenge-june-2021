@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using Business.Interfaces;
 using Business.Services;
 using Domain.Data;
+using Domain.Repositories.Impl;
+using Domain.Repositories.Interfaces;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +42,8 @@ namespace Api.Capiflix
             }
             
             services.AddTransient<IMovieService, MovieService>();
+
+            services.AddScoped<IMovieRepository, MovieRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

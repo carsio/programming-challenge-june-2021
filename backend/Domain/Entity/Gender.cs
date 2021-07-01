@@ -8,6 +8,6 @@ namespace Domain.Entity
     {
         [Key, Required] public int Id { get; set; }
         public string Name { get; set; }
-        public IList<Movie> Movies { get; set; }
+        public IList<MovieGender> MovieGenders { get; set; }
     }
 }
