@@ -46,6 +46,7 @@ namespace Tests.Config
         {
             SetFakeData<Movie>();
             SetFakeData<Gender>();
+            SetFakeData<MovieGender>();
             _applicationDbContext.SaveChanges();
         }
 
