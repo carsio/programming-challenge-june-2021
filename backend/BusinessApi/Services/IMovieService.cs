@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using BusinessApi.Dto;
 
-namespace Business.Interfaces
+namespace BusinessApi.Services
 {
     public interface IMovieService
     {

@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Api.Capiflix;
 using Business.Interfaces;
+using BusinessApi.Services;
 using Domain.Data;
 using Tests.Config;
 using Xunit;

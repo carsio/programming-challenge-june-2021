@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Business.Interfaces;
 using Business.Services;
+using BusinessApi.Services;
 using Domain.Data;
 using Domain.Repositories.Impl;
 using Domain.Repositories.Interfaces;
@@ -42,7 +43,10 @@ namespace Api.Capiflix
             }
             
             services.AddTransient<IMovieService, MovieService>();
+            services.AddTransient<IGenderService, GenderService>();
+            
             services.AddScoped<IMovieRepository, MovieRepository>();
+            services.AddScoped<IGenderRepository,GenderRepository>();
 
             services.AddControllers();
         }
