@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { FormEvent, FormEventHandler, useEffect, useState } from 'react';
 import logo from './assets/capiflix.png';
 import './App.css';
+import { IMovie } from './interfaces/IMovie';
+import { IGender } from './interfaces/IGender';
+import { movieService } from './services/movie.service';
 
 interface ICard {
   title:string;
@@ -9,12 +12,36 @@ interface ICard {
 
 const App = () => {
 
+  const [genres, setGenres] = useState([] as IGender[]);
+  const [movies, setMovies] = useState([] as IMovie[]);
+  const [year, setYear] = useState('');
+  const [gender, setGender] = useState('');
+  const [topK, setTopK] = useState('');
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  const load = async () : Promise<void> => {
+    const gnrs = await movieService.getGenres();
+    setGenres(gnrs.data);
+  }
+
+  const onSubmit = async (e: FormEvent) : Promise<void> => {
+    e.preventDefault();
+    console.log(year, gender, topK);
+    const moviesResponse = await movieService.getMovies(year, gender, topK);
+    setMovies(moviesResponse.data);
+  }
+
+  //const limitTitle = 
+
   const Card = ({title="", rating=0}:ICard) => {
     let initials = title.substring(0,2);
     return <div className="card">
               <div className="imgTmb">{initials}</div>
                 <div className="desc">
-                <span>{title}</span>
+                <span className="title" title={title}>{title}</span>
                 <span>⭐{rating}</span>
               </div>
             </div>
@@ -25,22 +52,16 @@ const App = () => {
       <header className="header">
         <img src={logo} alt="Logo capiflix" height="40"/>
       </header>
-      <form className="content">
-        <select name="genre" className="input border" placeholder="Genres">
+      <form className="content" onSubmit={onSubmit}>
+        <select name="genre" className="input border" placeholder="Genres" onChange={e => setGender(e.target.value)}>
           <option value="">Please choose</option>
-          <option value="1">Action</option>
-          <option value="2">Adventure</option>
-          <option value="3">Animation</option>
-          <option value="4">Children's</option>
-          <option value="5">Comedy</option>
-          <option value="6">Crime</option>
-          <option value="7">Documentary</option>
-          <option value="8">Drama</option>
-          <option value="9">Fantasy</option>
+          {genres.map(g => (
+            <option value={g.id}>{g.name}</option>
+          ))}
         </select>
         <div className="row">
-            <input type="number" className="input" name="year" id="year" placeholder="Year" />
-            <input type="number" className="input" name="topK" id="topK" placeholder="Top K" />
+          <input type="number" className="input" name="year" id="year" placeholder="Year" onChange={e => setYear(e.target.value)} />
+          <input type="number" className="input" name="topK" id="topK" placeholder="Top K" onChange={e => setTopK(e.target.value)} />
         </div>
         <div className="row end">
           <button type="submit" className="button-search">Search</button>
@@ -49,30 +70,9 @@ const App = () => {
       <div className="content">
           <h3>Movies:</h3>
           <div className="row-card">
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
-            <Card title="AAaw " rating={2.3} />
+            {movies.map(m => (
+              <Card title={m.title} rating={m.rating} />
+            ))}
           </div>
       </div>
     </div>

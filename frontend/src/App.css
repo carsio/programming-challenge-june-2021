@@ -89,3 +89,9 @@
 .desc span{
   font-size: calc(10px + 1vmin);
 }
+
+.card .title {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
