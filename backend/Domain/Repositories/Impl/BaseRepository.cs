@@ -1,4 +1,7 @@
-﻿using Domain.Data;
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using Domain.Data;
 using Domain.Repositories.Interfaces;
 
 namespace Domain.Repositories.Impl
@@ -11,5 +14,18 @@ namespace Domain.Repositories.Impl
         {
             Context = context;
         }
+
+        public async Task<T> Create(T obj)
+        {
+            var saved = await Context.Set<T>().AddAsync(obj);
+            await Context.SaveChangesAsync();
+            return saved.Entity;
+        }
+
+        public async Task<int> CreateRange(IEnumerable<T> objList)
+        {
+            await Context.Set<T>().AddRangeAsync(objList);
+            return await Context.SaveChangesAsync();
+        } 
     }
 }

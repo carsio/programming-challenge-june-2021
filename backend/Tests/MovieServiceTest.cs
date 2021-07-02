@@ -22,10 +22,7 @@ namespace Tests
             Setup();
         }
 
-        public void Setup()
-        {
-            _integrationTestFixture.InitialDb();
-        }
+        public void Setup() => _integrationTestFixture.InitialDb();
         
         public void Dispose() => _integrationTestFixture.Dispose();
 
