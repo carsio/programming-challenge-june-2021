@@ -32,13 +32,13 @@ namespace Tests
             var service = _integrationTestFixture.GetService<IMovieService>();
             
             var movies1 = await service.GetMoviesByYearAndGender(1995, 2);
-            Assert.Equal(2, movies1.Count);
+            Assert.Equal(2, movies1.ToList().Count);
             
             var movies2 = await service.GetMoviesByYearAndGender(1995, 3);
             Assert.Single(movies2);
             
             var movies3 = await service.GetMoviesByYearAndGender(1996, 5);
-            Assert.Equal(2, movies3.Count);
+            Assert.Equal(2, movies3.ToList().Count);
 
             var movies4 = await service.GetMoviesByYearAndGender(1996, 8);
             Assert.Single(movies4);
