@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
@@ -7,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using Deedle;
 using Domain.Entity;
+using Microsoft.EntityFrameworkCore;
 
 namespace ImportData
 {
@@ -18,6 +20,7 @@ namespace ImportData
         {
             Context.Genres.RemoveRange(Context.Genres);
             Context.Movies.RemoveRange(Context.Movies);
+            Context.MovieGenders.RemoveRange(Context.MovieGenders);
 
             var movie = Frame.ReadCsv(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "movies.csv"))
                 .IndexRows<int>("movieId");
@@ -57,16 +60,30 @@ namespace ImportData
 
         private static async Task InsertMovies(Frame<int, string> final)
         {
-            var result = final.Rows.Values;
-            var finalMovies = result.Select(series => new Movie()
+            var result = final.Rows;
+            
+            var finalMoviesTasks = result.Select(series =>
             {
-                Title = series.GetAs<string>("title"),
-                Year = series.TryGetAs<int>("year").HasValue ? series.GetAs<int>("year") : null,
-                Rating = series.TryGetAs<float>("rating").HasValue ? series.GetAs<float>("rating") : null
+                var value = series.Value;
+                return new Movie()
+                {
+                    Id = series.Key,
+                    Title = value.GetAs<string>("title"),
+                    Year = value.TryGetAs<int>("year").HasValue ? value.GetAs<int>("year") : null,
+                    Rating = value.TryGetAs<float>("rating").HasValue ? value.GetAs<float>("rating") : null,
+                    MovieGenders = GetGenders(value.GetAs<string>("genres")).Result
+                };
             });
 
-            await Context.AddRangeAsync(finalMovies);
+            await Context.AddRangeAsync(finalMoviesTasks.Values);
             await Context.SaveChangesAsync();
+        }
+
+        public static async Task<IList<MovieGender>> GetGenders(string genres)
+        {
+            var splited = genres.Split('|');
+            var gens = await Context.Genres.Where(g => splited.Contains(g.Name)).ToListAsync();
+            return gens.Select(g => new MovieGender() {GenderId = g.Id}).ToList();
         }
 
         public async static Task InsertGenres(IEnumerable<string> genres)
