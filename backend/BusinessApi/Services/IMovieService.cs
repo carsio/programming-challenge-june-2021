@@ -2,10 +2,10 @@
 using System.Threading.Tasks;
 using BusinessApi.Dto;
 
-namespace Business.Interfaces
+namespace BusinessApi.Services
 {
     public interface IMovieService
     {
-        Task<List<MovieDto>> GetMoviesByYearAndGender(int year, int genderId);
+        Task<IEnumerable<MovieDto>> GetMoviesByFilters(int? year, int? gender, int topK = 10);
     }
 }
