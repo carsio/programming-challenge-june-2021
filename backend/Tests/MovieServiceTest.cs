@@ -32,19 +32,19 @@ namespace Tests
         {
             var service = _integrationTestFixture.GetService<IMovieService>();
             
-            var movies1 = await service.GetMoviesByYearAndGender(1995, 2);
+            var movies1 = await service.GetMoviesByFilters(1995, 2);
             Assert.Equal(2, movies1.ToList().Count);
             
-            var movies2 = await service.GetMoviesByYearAndGender(1995, 3);
+            var movies2 = await service.GetMoviesByFilters(1995, 3);
             Assert.Single(movies2);
             
-            var movies3 = await service.GetMoviesByYearAndGender(1996, 5);
+            var movies3 = await service.GetMoviesByFilters(1996, 5);
             Assert.Equal(2, movies3.ToList().Count);
 
-            var movies4 = await service.GetMoviesByYearAndGender(1996, 8);
+            var movies4 = await service.GetMoviesByFilters(1996, 8);
             Assert.Single(movies4);
             
-            var movies5 = await service.GetMoviesByYearAndGender(1996, 9);
+            var movies5 = await service.GetMoviesByFilters(1996, 9);
             Assert.Empty(movies5);
         }
     }

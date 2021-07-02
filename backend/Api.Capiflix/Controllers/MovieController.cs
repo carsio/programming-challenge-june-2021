@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Business.Interfaces;
 using BusinessApi.Dto;
@@ -17,12 +18,18 @@ namespace Api.Capiflix.Controllers
         {
             _movieService = movieService;
         }
-
         /// <summary>
-        /// Get all movies
+        /// Get movies by filters
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public async Task<IEnumerable<MovieDto>> GetAllMovies() => await _movieService.GetAllMovies();
+        public async Task<IEnumerable<MovieDto>> GetMoviesByFilters(
+            [FromQuery] int? year,
+            [FromQuery] int? gender,
+            [FromQuery] int topK = 10
+            )
+        {
+            return await _movieService.GetMoviesByFilters(year, gender, topK);
+        } 
     }
 }

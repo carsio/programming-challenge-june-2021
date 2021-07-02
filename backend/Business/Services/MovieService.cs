@@ -18,16 +18,11 @@ namespace Business.Services
         {
             _movieRepository = movieRepository;
         }
-        public async Task<IEnumerable<MovieDto>> GetMoviesByYearAndGender(int year, int genderId)
-        {
-            var movies = await _movieRepository.GetMoviesByYearAndGender(year, genderId);
-            return ParseMovieToDto(movies);
-        }
 
-        public async Task<IEnumerable<MovieDto>> GetAllMovies()
+        public async  Task<IEnumerable<MovieDto>> GetMoviesByFilters(int? year, int? gender, int topK = 10)
         {
-            var movies = await _movieRepository.GetAllWithGenres();
-            return ParseMovieToDto(movies);
+            var movies = await _movieRepository.GetMoviesByYearAndGender(year, gender);
+            return ParseMovieToDto(movies.OrderByDescending(m=>m.Rating).Take(topK));
         }
 
         private IEnumerable<MovieDto> ParseMovieToDto(IEnumerable<Movie> movies) => movies.Select(m => new MovieDto(m));

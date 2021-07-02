@@ -6,7 +6,6 @@ namespace BusinessApi.Services
 {
     public interface IMovieService
     {
-        Task<IEnumerable<MovieDto>> GetMoviesByYearAndGender(int year, int genderId);
-        Task<IEnumerable<MovieDto>> GetAllMovies();
+        Task<IEnumerable<MovieDto>> GetMoviesByFilters(int? year, int? gender, int topK = 10);
     }
 }

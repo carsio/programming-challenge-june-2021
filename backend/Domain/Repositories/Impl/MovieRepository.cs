@@ -23,12 +23,20 @@ namespace Domain.Repositories.Impl
                 .Include(mg => mg.Gender);
         }
 
-        public async Task<IEnumerable<Movie>> GetMoviesByYearAndGender(int year, int genderId)
+        public async Task<IEnumerable<Movie>> GetMoviesByYearAndGender(int? year, int? genderId)
         {
-            var mg = await BaseIncludes()
-                .Where(mg => mg.Movie.Year == year && mg.GenderId == genderId)
-                .ToListAsync();
+            var query = BaseIncludes().AsQueryable();
 
+            if (year != null)
+            {
+                query = query.Where(mg => mg.Movie.Year == year);
+            }
+
+            if (genderId != null)
+            {
+                query = query.Where(mg=> mg.GenderId == genderId);
+            }
+            var mg = await query.ToListAsync();
             return ParseMgToMovie(mg);
         }
 

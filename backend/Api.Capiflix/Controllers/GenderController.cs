@@ -19,7 +19,12 @@ namespace Api.Capiflix.Controllers
         {
             _genderService = genderService;
         }
-
+        
+        /// <summary>
+        /// Get all genres
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
         public async Task<IEnumerable<GenderDto>> GetAll() => await _genderService.GetAll();
     }
 }

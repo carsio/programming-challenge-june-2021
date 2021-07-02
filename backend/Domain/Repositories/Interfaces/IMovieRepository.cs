@@ -6,7 +6,7 @@ namespace Domain.Repositories.Interfaces
 {
     public interface IMovieRepository: IBaseRepository<Movie>
     {
-        Task<IEnumerable<Movie>> GetMoviesByYearAndGender(int year, int genderId);
+        Task<IEnumerable<Movie>> GetMoviesByYearAndGender(int? year, int? genderId);
         Task<IEnumerable<Movie>> GetAllWithGenres();
     }
 }
