@@ -10,7 +10,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Resources" />
+      <Compile Remove="Resources\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="Resources\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="Resources\**" />
     </ItemGroup>
 
 </Project>
