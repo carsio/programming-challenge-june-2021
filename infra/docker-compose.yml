@@ -1,0 +1,38 @@
+version: '3.7'
+
+services: 
+  frontend:
+    build: 
+      context: ../frontend
+      dockerfile: Dockerfile
+    ports: 
+      - 8000:80
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+  
+  postgres:
+    build:
+      context: ./postgres
+      dockerfile: Dockerfile
+    environment: 
+      - POSTGRES_PASSWORD=capiflix
+    ports: 
+      - 5432:5432
+    volumes:
+      - db-capiflix:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    depends_on: 
+      - postgres
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=email@email.com
+      - PGADMIN_DEFAULT_PASSWORD=123456
+    ports: 
+      - 80:80
+  
+volumes:
+  db-capiflix:
